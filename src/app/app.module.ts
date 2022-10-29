@@ -10,6 +10,9 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BasicAuthInterceptor} from "./core/utils/auth/basic-auth.interceptor";
 import {LayoutsModule} from "./core/components/layouts/layouts.module";
 import {OverviewComponent} from './features/overview/overview.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
+import {CacheInterceptor} from "./core/utils/auth/cache.interceptor";
 
 @NgModule({
   declarations: [
@@ -28,9 +31,15 @@ import {OverviewComponent} from './features/overview/overview.component';
     FormsModule,
     RouterLink,
     LayoutsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      preventDuplicates: true
+    })
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true}
   ],
   exports: [],
   bootstrap: [AppComponent]

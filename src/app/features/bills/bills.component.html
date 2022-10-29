@@ -1,1 +1,36 @@
-<p>bills works!</p>
+<div class="shadow bg-body rounded p-5 m-5">
+  <div class="d-flex justify-content-between">
+    <p class="fs-3 fw-semibold">Bills</p>
+    <div>
+      <button class="btn btn-success px-4 mx-3" data-bs-target="#addBillModal" data-bs-toggle="modal">Add</button>
+    </div>
+  </div>
+  <table class="table table-borderless table-sm">
+    <thead>
+    <tr>
+      <th scope="col">
+        <input class="form-check-input" id="selectAllCheckbox" type="checkbox" value="">
+      </th>
+      <th scope="col">#</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Date</th>
+      <th scope="col">Patient</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let bill of bills">
+      <div>
+        <input class="form-check-input" id="selectCheckbox" type="checkbox" value="">
+      </div>
+      <th scope="row">{{bill.id}}</th>
+      <td>R {{bill.amount}}</td>
+      <td>{{bill.date}}</td>
+      <td>{{bill.patient.firstName}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Add Modal -->
+<app-bills-add-modal></app-bills-add-modal>
+
